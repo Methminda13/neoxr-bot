@@ -9,7 +9,7 @@ exports.run = {
       command
    }) => {
       try {
-         if (!text) return client.reply(m.chat, Func.example(isPrefix, command, 'sasimo'), m)
+         if (!text) return client.reply(m.chat, Func.example(isPrefix, command, 'lathi'), m)
          client.sendReact(m.chat, '🕒', m.key)
          let json = await Api.chord(text)
          if (!json.status) return client.reply(m.chat, global.status.fail, m)

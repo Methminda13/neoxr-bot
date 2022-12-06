@@ -2,6 +2,7 @@ console.log('Starting . . .')
 require('dotenv').config(), require('rootpath')(), require('./server')
 const { spawn: spawn } = require('child_process'), path = require('path'), colors = require('@colors/colors/safe'), CFonts = require('cfonts')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+process.on('uncaughtException', console.error)
 
 function start() {
 	let args = [path.join(__dirname, 'client.js'), ...process.argv.slice(2)]
@@ -20,16 +21,12 @@ function start() {
 	})
 }
 
-if (!process.env.DATABASE_URL) {
-   console.log(colors.red(`You have to setup the database first.`))
-} else {
-   CFonts.say('NEOXR BOT', {
-      font: 'tiny',
-      align: 'center',
-      colors: ['system']
-   }), CFonts.say('Github : https://github.com/neoxr/neoxr-bot', {
-      colors: ['system'],
-      font: 'console',
-      align: 'center'
-   }), start()
-}
+CFonts.say('NEOXR BOT', {
+   font: 'tiny',
+   align: 'center',
+   colors: ['system']
+}), CFonts.say('Github : https://github.com/neoxr/neoxr-bot', {
+   colors: ['system'],
+   font: 'console',
+   align: 'center'
+}), start()
